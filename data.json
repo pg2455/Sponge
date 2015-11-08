@@ -1,0 +1,33 @@
+data = {
+  "beacon_to_merchant":{
+    "#1":"@1",
+    "#2":"@1",
+    "#3":"@1",
+    "#4":"@1",
+    "#5":"@2",
+    "#6":"@2"
+  },
+  "merchant_info":{
+    "@1":{
+      "name":"SUNAC FOODS",
+      "address":{"str":"155 CLAREMONT AVE", "state":"NY","city":"New York","zip_code":"10027"},
+      "master_card_id": "1234512345",
+      "suggested_tip": [0.18, 0.20, 0.25],
+      "tax":0.9013
+    },
+    "@2":{
+      "name":"IMPACT FOODS",
+      "address":{"str":"390 BROADWAY", "state":"NY","city":"New York","zip_code":"10013"},
+      "master_card_id": "1234512346",
+      "suggested_tip":[0.15,0.18, 0.20,0.25],
+      "tax":0.9013
+      }
+  },
+  "transactions":{
+  },
+  "beacon_status": {
+    "#1":"oid1",
+    "#2":"oid3",
+    "orders":["oid1","oid3"]
+  }
+}

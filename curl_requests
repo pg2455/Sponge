@@ -1,0 +1,72 @@
+
+# acceptOrder  endpoint --> first point
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"timestamp": 131412412412, "beacon_id": "d157546925db", "namespace":"EDD1EBEAC04E5DEFA017", "selected_items": [{"name":"gin","times":2, "price": 4.56}, {"name":"grilled_chicken","price": 8.99, "times": 1}]}' \
+  http://0.0.0.0:9090/acceptOrder
+
+
+#displayOrder endpoint --> first user endppoint
+  curl -H "Content-Type: application/json"\
+    -X POST -d'{"beacon_id":"d157546925db"}' \
+    http://0.0.0.0:9090/displayOrder
+
+#item setting by the user
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"beacon_id":"d157546925db", "user_id":"2525E587-873B-4FCC-BCED-6C28F10F5CCD", "selected_items":{"gin":{"times":1, "price":4.56}, "grilled_chicken":{"price":8.99, "times":1}}}' \
+  http://0.0.0.0:9090/setItems
+
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"beacon_id":"#1", "user_id":"u124", "items":{"gin":{"times":1, "price":4.56}}}' \
+  http://0.0.0.0:9090/setItems
+
+
+#showPay?
+
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"beacon_id":"d157546925db"}' \
+  http://0.0.0.0:9090/showPayButton
+
+# once the payment goes through clear BeaconId
+
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"beacon_id":"d157546925db"}' \
+  http://0.0.0.0:9090/clearBeaconId
+
+
+# get public key
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"namespace":"EDD1EBEAC04E5DEFA017"}' \
+  http://0.0.0.0:9090/getPublicKey
+
+
+# show payment status
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"beacon_id": "d157546925db","namespace":"EDD1EBEAC04E5DEFA017"}' \
+  http://0.0.0.0:9090/showPaymentStatus
+
+
+#submitPayment
+curl -H "Content-Type: application/json"\
+  -X POST -d'{"beacon_id": "d157546925db","namespace":"EDD1EBEAC04E5DEFA017", "user_id":"2525E587-873B-4FCC-BCED-6C28F10F5CCD", "amount":2304, "token":"1b1daf63-3a4d-4647-ad45-6fb9b191c61e"}' \
+  http://0.0.0.0:9090/submitPayment
+
+
+#show data
+curl http://0.0.0.0:9090/show_data
+
+order = {"beacon_id":"#1",
+  "order":{
+  "grilled_chicken":{
+"times":1,
+"price":8.99,
+},
+"gin":{
+"times":2,
+"price":4.56
+}
+},
+"timestamp":131412412412
+  }
+
+def getStringCurlRequest(order):
+  return "curl -H \"Content-Type: application/json\" -X POST -d'" + str(order) + "' http://0.0.0.0:9090/acceptOrder"
